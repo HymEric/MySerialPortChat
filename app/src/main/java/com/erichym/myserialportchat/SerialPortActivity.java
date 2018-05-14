@@ -26,11 +26,12 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import android_serialport_api.SerialPort;
 
 
-public abstract class SerialPortActivity extends Activity {
+public abstract class SerialPortActivity extends AppCompatActivity {
 
 	protected Application mApplication;
 	protected SerialPort mSerialPort;

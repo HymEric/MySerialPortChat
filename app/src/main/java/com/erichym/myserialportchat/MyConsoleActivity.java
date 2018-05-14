@@ -25,10 +25,14 @@ public class MyConsoleActivity extends SerialPortActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_console);
+        //setContentView(R.layout.activity_my_console);
 
         getSerialPortContentEt=findViewById(R.id.get_serialport_text);
         sendSerialPortContentEt=findViewById(R.id.send_serialport_text);
+        sendSerialPortContentEt.setFocusable(true);
+        sendSerialPortContentEt.setFocusableInTouchMode(true);
+        sendSerialPortContentEt.requestFocus();//获取焦点，光标出现
+
         sendSerialPortContentBtn=findViewById(R.id.send_serialport_text_btn);
         clearSerialPortContentBtn=findViewById(R.id.clear_get_serialport_text_btn);
         //清空按钮事件

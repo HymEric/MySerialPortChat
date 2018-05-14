@@ -5,20 +5,166 @@
     android:layout_height="fill_parent"
     android:layout_alignParentLeft="true"
     android:layout_alignParentTop="true"
-    android:orientation="vertical" >
+    android:background="#605d5d"
+    android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/ButtonSetup"
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:text="Setup" />
+    <LinearLayout
+        android:layout_width="135dp"
+        android:layout_height="match_parent"
+        android:background="#ffec7e"
+        android:orientation="vertical"
+        android:layout_margin="5dp">
 
-    <Button
-        android:id="@+id/ButtonConsole"
-        android:layout_width="fill_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:text="Console" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="功能区"
+            android:layout_margin="5dp"/>
+
+        <Button
+            android:id="@+id/clear_get_serialport_text_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="清除接收区"/>
+
+        <Button
+            android:id="@+id/clear_send_serialport_text_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="清除发送区"/>
+
+        <Button
+            android:id="@+id/selectFileToSendBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="选择发送文件"/>
+
+        <Button
+            android:id="@+id/save_get_text_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="保存接收数据"/>
+
+        <Button
+            android:id="@+id/save_get_text_path"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="选择保存路径"/>
+
+        <TextView
+            android:id="@+id/save_get_text_path_show"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="C:/MyPortChat"
+            android:layout_marginLeft="5dp"/>
+
+        <CheckBox
+            android:id="@+id/periodicSendBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="定时周期发送"
+            android:layout_marginTop="10dp"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffec7e"
+        android:layout_margin="5dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="接收区"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"/>
+            <CheckBox
+                android:id="@+id/getdata_16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="16进制显示"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:textColor="#555"/>
+
+        </LinearLayout>
+
+
+        <EditText
+            android:id="@+id/get_serialport_text"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:layout_margin="5dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="发送区"
+            android:layout_marginLeft="5dp"/>
+
+        <EditText
+            android:id="@+id/send_serialport_text"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:layout_margin="5dp"
+
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/send_serialport_text_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="发送消息"
+
+                />
+
+            <CheckBox
+                android:id="@+id/senddata_16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="16进制发送"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:textColor="#555"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/send_serialport_file_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="发送文件"
+                />
+
+            <TextView
+                android:id="@+id/selectedfilepath"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="未选择文件"
+                android:layout_marginLeft="5dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
 
 </LinearLayout>
