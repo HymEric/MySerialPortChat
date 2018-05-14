@@ -40,15 +40,21 @@ public class Application extends android.app.Application {
 			SharedPreferences sp = getSharedPreferences("com.erichym.myserialportchat_preferences", MODE_PRIVATE);
 			String path = sp.getString("DEVICE", "");
 			int baudrate = Integer.decode(sp.getString("BAUDRATE", "-1"));
+			/*新加的设置奇偶校验、数据位、停止位*/
+			int parity=Integer.decode(sp.getString("PARITY","-1"));
+			int dataBits=Integer.decode(sp.getString("DATABITS","-1"));
+			int stopBit=Integer.decode(sp.getString("STOPBIT","-1"));
 
-			Log.e("TAG","path="+path+"     baudrate="+baudrate);
+
+			Log.e("TAG","path="+path+"     baudrate="+baudrate+"     parity="+parity+
+					"    dataBits="+dataBits+"    stopBit="+stopBit);
 			/* Check parameters */
-			if ( (path.length() == 0) || (baudrate == -1)) {
+			if ( (path.length() == 0) || (baudrate == -1)||(parity==-1)||(dataBits==-1)||(stopBit==-1)) {
 				throw new InvalidParameterException();
 			}
 
 			/* Open the serial port */
-			mSerialPort = new SerialPort(new File(path), baudrate, 0);
+			mSerialPort = new SerialPort(new File(path), baudrate, parity,dataBits,stopBit);
 		}
 		return mSerialPort;
 	}

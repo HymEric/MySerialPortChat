@@ -82,11 +82,14 @@ static speed_t getBaudrate(jint baudrate)
  * 这个參数的名称就能够看到，就是指JNI的执行环境参考：https://www.cnblogs.com/gavanwanggw/p/6907893.html
  */
 JNIEXPORT jobject JNICALL Java_android_1serialport_1api_SerialPort_open
-  (JNIEnv *env, jclass thiz, jstring path, jint baudrate, jint flags)
+  (JNIEnv *env, jclass thiz, jstring path, jint baudrate, jint parity, jint dataBits, jint stopBit)
 {
 	int fd;
+	int flags;
 	speed_t speed;
 	jobject mFileDescriptor;
+
+    flags=0;
 
 	/* Check arguments */
 	{
@@ -96,6 +99,18 @@ JNIEXPORT jobject JNICALL Java_android_1serialport_1api_SerialPort_open
 			LOGE("Invalid baudrate");
 			return NULL;
 		}
+		if (parity <0 || parity>2) {
+             LOGE("Invalid parity");
+             return NULL;
+         }
+        if (dataBits <5 || dataBits>8) {
+             LOGE("Invalid dataBits");
+             return NULL;
+         }
+         if (stopBit <1 || stopBit>2) {
+             LOGE("Invalid stopBit");
+             return NULL;
+         }
 	}
 
 	/* Opening device */
@@ -131,13 +146,25 @@ JNIEXPORT jobject JNICALL Java_android_1serialport_1api_SerialPort_open
 		cfsetispeed(&cfg, speed);
 		cfsetospeed(&cfg, speed);
 
-		if (tcsetattr(fd, TCSANOW, &cfg))
-		{
-			LOGE("tcsetattr() failed");
-			close(fd);
-			/* TODO: throw an exception */
-			return NULL;
-		}
+        /* More attribute set */
+        switch (parity) {
+            case 0: break;
+            case 1: cfg.c_cflag |= PARENB; break;
+            case 2: cfg.c_cflag &= ~PARODD; break;
+        }
+        switch (dataBits) {
+            case 5: cfg.c_cflag |= CS5; break;
+            case 6: cfg.c_cflag |= CS6; break;
+            case 7: cfg.c_cflag |= CS7; break;
+            case 8: cfg.c_cflag |= CS8; break;
+        }
+        switch (stopBit) {
+            case 1: cfg.c_cflag &= ~CSTOPB; break;
+            case 2: cfg.c_cflag |= CSTOPB; break;
+        }
+        int rc = tcsetattr(fd, TCSANOW, &cfg);
+
+
 	}
 
 	/* Create a corresponding file descriptor */

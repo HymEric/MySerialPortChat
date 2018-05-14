@@ -19,9 +19,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SerialPortPreferences"></activity>
-        <activity android:name=".ConsoleActivity"></activity>
-        <activity android:name=".MyConsoleActivity"></activity>
+        <activity android:name=".SerialPortPreferences" />
+        <activity android:name=".MySerialPortPreferences" />
+        <activity android:name=".ConsoleActivity" />
+        <activity android:name=".MyConsoleActivity" />
     </application>
 
 </manifest>

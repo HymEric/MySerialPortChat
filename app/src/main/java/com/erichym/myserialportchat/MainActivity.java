@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
         final Button buttonSetup = (Button)findViewById(R.id.ButtonSetup);
         buttonSetup.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, SerialPortPreferences.class));
+                startActivity(new Intent(MainActivity.this, MySerialPortPreferences.class));
             }
         });
 

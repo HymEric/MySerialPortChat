@@ -20,8 +20,20 @@ public class SerialPort {
     private FileDescriptor mFd;
     private FileInputStream mFileInputStream;
     private FileOutputStream mFileOutputStream;
-//串口，波特率
-    public SerialPort(File device, int baudrate, int flags) throws SecurityException, IOException {
+
+    public SerialPort(File device) throws SecurityException, IOException {
+        this(device,9600,0,8,1);
+    }
+    /**
+     * 打开串口
+     *@param device 串口设备文件
+     *@param baudrate 波特率，一般是9600
+     *@param parity 奇偶校验，0 None, 1 Odd, 2 Even
+     *@param dataBits 数据位，5 - 8
+     *@param stopBit 停止位，1 或 2
+     */
+    //串口，波特率
+    public SerialPort(File device, int baudrate,  int parity, int dataBits, int stopBit) throws SecurityException, IOException {
 
         /* Check access permission */
         if (!device.canRead() || !device.canWrite()) {
@@ -42,7 +54,7 @@ public class SerialPort {
             }
         }
         //获取文件描述符
-        mFd = open(device.getAbsolutePath(), baudrate, flags);
+        mFd = open(device.getAbsolutePath(), baudrate, parity, dataBits, stopBit);
         if (mFd == null) {
             Log.e(TAG, "native open returns null");
             throw new IOException();
@@ -61,7 +73,7 @@ public class SerialPort {
     }
 
     // JNI
-    private native static FileDescriptor open(String path, int baudrate, int flags);
+    private native static FileDescriptor open(String path, int baudrate, int parity, int dataBits, int stopBit);
     public native void close();
     static {
         System.loadLibrary("serial_port");

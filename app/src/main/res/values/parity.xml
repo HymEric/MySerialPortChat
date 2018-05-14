@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="parity_name">
+        <item>None</item>
+        <item>Odd</item>
+        <item>Even</item>
+    </string-array>
+
+    <string-array name="parity_value">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+</resources>
