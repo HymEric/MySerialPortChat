@@ -1,0 +1,48 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 27
+    buildToolsVersion "27.0.3"
+    defaultConfig {
+        applicationId "com.erichym.myserialportchat"
+        minSdkVersion 15
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+
+        ndk {
+            // abiFilter "armeabi"
+            moduleName "libserial_port"//你生成的.so文件的文件名
+            // ldLibs "log", "z", "m", "jnigraphics", "android"
+        }
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        sourceSets.main {
+            jni.srcDirs = []
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+//        sourceSets {
+//            main { jni.srcDirs = [] }
+//        }
+    }
+
+//    sourceSets{ //设置.so文件路径
+//        main{
+//            jniLibs.srcDirs = ['src/main/libs']//里面添加你的libs文件路径，如果是src/main/libs,则里面填写['<span style="font-family: 宋体;">src/main/libs</span>']
+//        }
+//    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}

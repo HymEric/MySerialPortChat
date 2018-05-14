@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MyConsoleActivity"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/get_serialport_text"
+        android:layout_width="match_parent"
+        android:layout_height="265dp"
+        android:layout_margin="5dp"
+        />
+
+    <EditText
+        android:id="@+id/send_serialport_text"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_margin="5dp"
+        />
+
+    <Button
+        android:id="@+id/send_serialport_text_btn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="5dp"
+        android:text="发送"
+        android:textSize="25dp"
+        />
+
+    <Button
+        android:id="@+id/clear_get_serialport_text_btn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="5dp"
+        android:text="清除"
+        android:textSize="25dp"
+        />
+
+</LinearLayout>
